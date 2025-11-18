@@ -113,20 +113,23 @@ nav {
     position: relative;
 }
 
-.menu a {
+.menu > li > a {
     color: var(--light);
     text-decoration: none;
     font-weight: 600;
-    padding: 0.35rem 0.6rem;
+    padding: 0.45rem 0.7rem;
     border-radius: 6px;
-    transition: background 0.2s ease;
-    
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
-.menu a.active,
-.menu a:hover,
-.menu a:focus-visible {
-    background: #f2a900;
+.menu > li > a.active,
+.menu > li > a:hover,
+.menu > li > a:focus-visible {
+    background: var(--secondary);
+    color: var(--text);
 }
 
 .btn-link {
@@ -142,7 +145,7 @@ nav {
 .submenu {
     position: absolute;
     left: 0;
-    top: calc(100% + 0.3rem);
+    top: 100%;
     list-style: none;
     background: var(--light);
     color: var(--text);
@@ -159,6 +162,14 @@ nav {
     padding: 0.5rem 1rem;
     color: var(--text);
     font-weight: 500;
+    border-radius: 0.35rem;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.submenu li a:hover,
+.submenu li a:focus-visible {
+    background: var(--muted);
+    color: var(--primary);
 }
 
 .has-submenu:focus-within > .submenu,
