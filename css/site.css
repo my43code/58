@@ -123,11 +123,14 @@ nav {
     align-items: center;
     gap: 0.25rem;
     transition: background 0.2s ease, color 0.2s ease;
+
 }
 
 .menu > li > a.active,
 .menu > li > a:hover,
-.menu > li > a:focus-visible {
+.menu > li > a:focus-visible,
+.menu > li:hover > a,
+.menu > li:focus-within > a {
     background: var(--secondary);
     color: var(--text);
 }
