@@ -17,6 +17,21 @@
         });
     });
 
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('#main-menu a');
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        const normalized = href ? href.split('#')[0] : '';
+        if(normalized === currentPage || (currentPage === '' && normalized === 'index.html')){
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
+            const parentToggle = link.closest('.submenu')?.previousElementSibling;
+            if(parentToggle){
+                parentToggle.classList.add('active');
+            }
+        }
+    });
+
     const yearEl = document.getElementById('year');
     if(yearEl){
         yearEl.textContent = new Date().getFullYear();
