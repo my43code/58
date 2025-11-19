@@ -18,11 +18,16 @@
     });
 
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const currentHash = window.location.hash;
     const navLinks = document.querySelectorAll('#main-menu a');
     navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        const normalized = href ? href.split('#')[0] : '';
-        if(normalized === currentPage || (currentPage === '' && normalized === 'index.html')){
+        const href = link.getAttribute('href') || '';
+        const [normalizedPath, hashPart] = href.split('#');
+        const linkHash = hashPart ? `#${hashPart}` : '';
+        const matchesPage = normalizedPath === currentPage || (currentPage === '' && normalizedPath === 'index.html');
+        const matchesHash = linkHash ? linkHash === currentHash : currentHash === '';
+
+        if(matchesPage && matchesHash){
             link.classList.add('active');
             link.setAttribute('aria-current', 'page');
             const parentToggle = link.closest('.submenu')?.previousElementSibling;
