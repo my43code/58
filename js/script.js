@@ -8,12 +8,27 @@
         });
     }
 
-    document.querySelectorAll('.has-submenu > a').forEach(link => {
+    const submenuLinks = document.querySelectorAll('.has-submenu > a');
+    submenuLinks.forEach(link => {
+        const parent = link.parentElement;
+        link.setAttribute('aria-expanded', 'false');
+
         link.addEventListener('click', e => {
-            if(window.innerWidth <= 900){
-                e.preventDefault();
-                link.parentElement.classList.toggle('open');
-            }
+            e.preventDefault();
+            const isOpen = parent.classList.contains('open');
+
+            document.querySelectorAll('.has-submenu.open').forEach(item => {
+                if(item !== parent){
+                    item.classList.remove('open');
+                    const trigger = item.querySelector(':scope > a');
+                    if(trigger){
+                        trigger.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+
+            parent.classList.toggle('open', !isOpen);
+            link.setAttribute('aria-expanded', (!isOpen).toString());
         });
     });
 
