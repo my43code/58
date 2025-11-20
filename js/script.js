@@ -14,6 +14,10 @@
         link.setAttribute('aria-expanded', 'false');
 
         link.addEventListener('click', e => {
+            if(window.innerWidth > 900){
+                return;
+            }
+
             e.preventDefault();
             const isOpen = parent.classList.contains('open');
 
